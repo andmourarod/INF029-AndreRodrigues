@@ -9,6 +9,11 @@ int main()
     scanf("%d", &x);
     printf("Informe valor de Y. \n");
     scanf("%d", &y);
+
+    x = x + y;
+    x = x + y - x;
+    y = x + y - y;
+    
     printf("O valor de X é: %d \n", y);
     printf("O valor de Y é: %d \n", x);
     
