@@ -19,15 +19,15 @@ int main()
     {
     	printf("Nome: \n");
     	fflush(stdin);
-    	gets(dadospessoas[icont].nome);
+    	fgets(dadospessoas[icont].nome, 50, stdin);
     	printf("Idade: \n");
     	scanf("%d", &dadospessoas[icont].idade);
     	printf("Sexo: \n");
     	fflush(stdin);
-    	gets(dadospessoas[icont].sexo);
+    	fgets(dadospessoas[icont].sexo, 15, stdin);
     	printf("CPF: xxx.xxx.xxx-xx \n");
     	fflush(stdin);
-    	gets(dadospessoas[icont].cpf);   	
+    	fgets(dadospessoas[icont].cpf, 15, stdin);   	
 	}
 	
 	printf("\n --- DADOS PESSOAS --- \n \n");    
