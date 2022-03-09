@@ -1,0 +1,189 @@
+#include <stdio.h>
+#include <string.h>
+#define qtdealunos 2
+
+typedef struct st_datanascimento
+{
+	int dia;
+	int mes;
+	int ano;
+}dataNascimento;
+
+typedef struct st_incluir
+{
+	int matricula;
+	char nome[51];
+	char sexo;
+	st_datanascimento dataNascimento;
+	char CPF[15];	
+}incluir;
+
+int main()
+{
+	int opcao, icont, lista = 0, finalizar = 0, matricula, posvetor, naluno;
+	incluir vetorAlunos[qtdealunos]; //inicialmente definido em 2.
+	     
+    while(finalizar == 0)
+    {
+    	printf("--- Cadastro de Alunos --- \n");
+	    printf("0 - Sair \n");
+	    printf("1 - Incluir Aluno \n");
+	    printf("2 - Listar Alunos \n");
+	    printf("3 - Atualizar Aluno \n");
+	    printf("4 - Excluir Aluno \n");
+	    scanf("%d", &opcao);
+	    
+		if(opcao == 0)
+	    {
+	    	finalizar = 1;
+			printf("Finalizando Cadastro de Alunos. \n");    	
+		}
+		if(opcao == 1)
+		{
+			printf("-- INCLUSÃO DE ALUNOS --\n");
+			for(icont = 0; icont < qtdealunos; icont++)
+			{
+				naluno = icont + 1;
+				printf("- DADOS DO ALUNO %d - \n", naluno);
+				printf("Matricula do Aluno: \n");
+				scanf("%d", &vetorAlunos[icont].matricula);
+				getchar();
+				
+				printf("Nome do Aluno (até 50 caracteres): \n");
+				fflush(stdin);
+				fgets(vetorAlunos[icont].nome, 51, stdin);
+				
+				size_t ln = strlen(vetorAlunos[icont].nome) - 1; //comando para retirar o \n gerado pelo fgets
+	        	if (vetorAlunos[icont].nome[ln] == '\n')
+	        	{
+	        		vetorAlunos[icont].nome[ln] = '\0';	
+				}
+				
+				printf("Sexo: M/F \n");
+				scanf("%c", &vetorAlunos[icont].sexo);
+	          
+	          	printf("Dia do Nascimento: \n");
+				scanf("%d", &vetorAlunos[icont].dataNascimento.dia);
+				printf("Mês do Nascimento: \n");
+				scanf("%d", &vetorAlunos[icont].dataNascimento.mes);
+				printf("Ano do Nascimento: \n");
+				scanf("%d", &vetorAlunos[icont].dataNascimento.ano);
+				
+				printf("CPF: (xxx.xxx.xxx-xx) \n");
+				fflush(stdin);
+				fgets(vetorAlunos[icont].CPF, 15, stdin);
+				
+				ln = strlen(vetorAlunos[icont].CPF) - 1; //comando para retirar o \n gerado pelo fgets
+	        	if (vetorAlunos[icont].CPF[ln] == '\n')
+	        	{
+	        		vetorAlunos[icont].CPF[ln] = '\0';	
+				}  				  
+			}
+			lista = 1; //informa que há alunos listados.
+		}
+		if (opcao == 2)
+		{
+			if(lista == 0)
+			{
+				printf("\n A lista está vazia. \n");
+				printf("Primeiramente, você deve inserir/incluir alunos no sistema. \n \n");
+			}
+			else
+			{
+				printf("\n--- LISTA DE ALUNOS --- \n");
+	        	for (icont = 0; icont < qtdealunos; icont++)
+				{
+			        printf("Matrícula: %d \n", vetorAlunos[icont].matricula);
+			        printf("Nome: %s \n", vetorAlunos[icont].nome);
+			        printf("Sexo: %c \n", vetorAlunos[icont].sexo);
+			        printf("Data Nascimento: %d/%d/%d \n", &vetorAlunos[icont].dataNascimento.dia, &vetorAlunos[icont].dataNascimento.mes, &vetorAlunos[icont].dataNascimento.ano);
+			        printf("CPF: %s \n \n", vetorAlunos[icont].CPF);
+			    }		
+			    printf("________________________________________________ \n")
+	        }		
+		}
+		if(opcao == 3)
+		{
+			printf("Informe a matrícula do Aluno que deseja atualizar. \n");
+			scanf("%d", &matricula);
+			
+			for(icont = 0; icont<qtdealunos; icont++)
+			{
+				if(vetorAlunos[icont].matricula == matricula)
+				{
+					posvetor = icont;
+				}
+			}
+			
+			printf("--- DADOS DO ALUNO DE MATRICULA: %d --- \n", matricula);
+			printf("Nome: %s \n", vetorAlunos[posvetor].sexo);
+			printf("Data Nascimento: %d/%d/%d \n", &vetorAlunos[posvetor].dataNascimento.dia, &vetorAlunos[posvetor].dataNascimento.mes, &vetorAlunos[posvetor].dataNascimento.ano);
+			printf("CPF: %s \n", vetorAlunos[posvetor].CPF);
+			printf("________________________________________________ \n");
+			
+			printf("--- ATUALIZAÇÃO DE DADOS DO ALUNO ---");
+			printf("Nome do Aluno (até 50 caracteres): \n");
+			fflush(stdin);
+			fgets(vetorAlunos[posvetor].nome, 51, stdin);
+				
+			size_t ln = strlen(vetorAlunos[posvetor].nome) - 1; //comando para retirar o \n gerado pelo fgets
+	        if (vetorAlunos[posvetor].nome[ln] == '\n')
+	        {
+	        	vetorAlunos[posvetor].nome[ln] = '\0';	
+			}
+				
+			printf("Sexo: M/F \n");
+			scanf("%c", &vetorAlunos[posvetor].sexo);
+	          
+	        printf("Dia do Nascimento: \n");
+			scanf("%d", &vetorAlunos[posvetor].dataNascimento.dia);
+			printf("Mês do Nascimento: \n");
+			scanf("%d", &vetorAlunos[posvetor].dataNascimento.mes);
+			printf("Ano do Nascimento: \n");
+			scanf("%d", &vetorAlunos[posvetor].dataNascimento.ano);
+				
+			printf("CPF: (xxx.xxx.xxx-xx) \n");
+			fflush(stdin);
+			fgets(vetorAlunos[posvetor].CPF, 15, stdin);		
+		}
+		if(opcao == 4)
+		{
+			printf("Informe a matrícula do Aluno que deseja EXCLUIR. \n");
+			scanf("%d", &matricula);
+			
+			for(icont = 0; icont<qtdealunos; icont++)
+			{
+				if(vetorAlunos[icont].matricula == matricula)
+				{
+					posvetor = icont;
+				}
+			}
+			
+			printf("--- ALUNO A SER EXCLUÍDO --- \n", matricula);
+			printf("Nome: %s \n", vetorAlunos[posvetor].sexo);
+			printf("Data Nascimento: %d/%d/%d \n", &vetorAlunos[posvetor].dataNascimento.dia, &vetorAlunos[posvetor].dataNascimento.mes, &vetorAlunos[posvetor].dataNascimento.ano);
+			printf("CPF: %s \n", vetorAlunos[posvetor].CPF);
+			printf("________________________________________________ \n");
+			
+			printf("Excluindo dados... \n");
+			
+			/*for(icont = posvetor; icont<qtdealunos; icont++) //Laço sobrepondo os dados posteriores ao da posição solicitada pelo usuário. Pendente exclusão do último dado do vetor que fica duplicado.
+			{												//Analisar uma maneira mais fácil de realizar esta exclusão.
+				vetorAlunos[posvetor].matricula = vetorAlunos[posvetor+1].matricula;
+				vetorAlunos[posvetor].nome = vetorAlunos[posvetor+1].nome;
+				vetorAlunos[posvetor].dataNascimento.dia = vetorAlunos[posvetor+1].dataNascimento.dia;
+				vetorAlunos[posvetor].dataNascimento.mes = vetorAlunos[posvetor+1].dataNascimento.mes;
+				vetorAlunos[posvetor].dataNascimento.ano = vetorAlunos[posvetor+1].dataNascimento.ano;
+				vetorAlunos[posvetor].CPF = vetorAlunos[posvetor+1].CPF;			
+			}*/
+			printf("Aluno excluído. \n");		
+		}
+		if(opcao > 5)
+		{
+			printf("Opção inválida. \n");
+		}    
+    }
+	return 0;	
+}
+
+

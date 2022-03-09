@@ -1,0 +1,227 @@
+#include <stdio.h>
+#include <string.h>
+#define qtdedisciplina 2
+
+typedef struct st_disciplina
+{
+	char nome[51];
+	char codigo[9];
+	char semestre[7];  
+	char professor[51];
+	char alunosmatriculados[51];
+}Disciplina;
+
+int main()
+{
+	int opcao, icont, lista = 0, finalizar = 0, posvetor, ndisciplina;
+	incluir vetorDisciplinas[qtdedisciplina]; //inicialmente definido em 2.
+	     
+    while(finalizar == 0)
+    {
+    	printf("--- Cadastro de Disciplinas --- \n");
+	    printf("0 - Sair \n");
+	    printf("1 - Incluir Disciplina \n");
+	    printf("2 - Listar Disciplinas \n");
+	    printf("3 - Atualizar Disciplina \n");
+	    printf("4 - Excluir Disciplina \n");
+	    printf("5 - Incluir aluno na disciplina. \n");
+	    printf("6 - Excluir aluno da disciplina \n");
+	    scanf("%d", &opcao);
+	    
+		if(opcao == 0)
+	    {
+	    	finalizar = 1;
+			printf("Finalizando Cadastro de Disciplinas. \n");    	
+		}
+		if(opcao == 1)
+		{
+			printf("-- INCLUSÃO DE DISCIPLINA --\n");
+			for(icont = 0; icont < qtdedisciplina; icont++)
+			{
+				ndisciplina = icont + 1;
+				printf("- DADOS DA DISCIPLINA %d - \n", ndisciplina);
+				printf("Nome da Disciplina (até 50 caracteres): \n");
+				fflush(stdin);
+				fgets(vetorDisciplinas[icont].nome, 51, stdin);
+				
+				size_t ln = strlen(vetorDisciplinas[icont].nome) - 1; //comando para retirar o \n gerado pelo fgets
+	        	if (vetorDisciplinas[icont].nome[ln] == '\n')
+	        	{
+	        		vetorDisciplinas[icont].nome[ln] = '\0';	
+				}
+				
+				printf("Código da Disciplina (até 9 caracteres): \n");
+				fflush(stdin);
+				fgets(vetorDisciplinas[icont].codigo, 9, stdin);
+				
+				ln = strlen(vetorDisciplinas[icont].codigo) - 1; //comando para retirar o \n gerado pelo fgets
+	        	if (vetorDisciplinas[icont].codigo[ln] == '\n')
+	        	{
+	        		vetorDisciplinas[icont].codigo[ln] = '\0';	
+				}
+				printf("Semestre: aaaa/s \n");
+				fflush(stdin);
+				fgets(vetorDisciplinas[icont].semestre, 7, stdin);
+				
+				ln = strlen(vetorDisciplinas[icont].semestre) - 1; //comando para retirar o \n gerado pelo fgets
+	        	if (vetorDisciplinas[icont].semestre[ln] == '\n')
+	        	{
+	        		vetorDisciplinas[icont].semestre[ln] = '\0';	
+				}
+				printf("Professor da Disciplina (até 50 caracteres): \n");
+				fflush(stdin);
+				fgets(vetorDisciplinas[icont].professor, 51, stdin);
+				
+				ln = strlen(vetorAlunos[icont].professor) - 1; //comando para retirar o \n gerado pelo fgets
+	        	if (vetorAlunos[icont].professor[ln] == '\n')
+	        	{
+	        		vetorAlunos[icont].professor[ln] = '\0';	
+				}	 
+			}
+			lista = 1; //informa que há alunos listados.
+		}
+		if (opcao == 2)
+		{
+			if(lista == 0)
+			{
+				printf("\n A lista está vazia. \n");
+				printf("Primeiramente, você deve inserir/incluir alunos no sistema. \n \n");
+			}
+			else
+			{
+				printf("\n--- LISTA DE DISCIPLINAS --- \n");
+	        	for (icont = 0; icont < qtdealunos; icont++)
+				{
+			        printf("Nome: %s \n", vetorDisciplinas[icont].nome);
+			        printf("Código: %s \n", vetorDisciplinas[icont].codigo);
+			        printf("Semestre: %s \n", vetorDisciplinas[icont].semestre);
+			        printf("Professor: %s \n", vetorDisciplinas[icont].disciplina); 			        
+			    }		
+			    printf("________________________________________________ \n")
+	        }		
+		}
+		if(opcao == 3) //codigo é uma char. Tenho que comparar 2 strings. Usar strcomp
+		{
+			printf("Informe o código da Disciplina que deseja atualizar. \n");
+			scanf("%d", &codigo);
+			
+			for(icont = 0; icont<qtdealunos; icont++)
+			{
+				if(vetorDisciplinas[icont].codigo == codigo)
+				{
+					posvetor = icont;
+				}
+			}
+			
+			printf("--- DADOS DA DISCIPLINA - CÓDIGO: %d --- \n", codigo);
+			printf("Nome: %s \n", vetorDisciplinas[posvetor].nome);
+			printf("Semestre: %s \n", vetorDisciplinas[posvetor].semestre);
+			printf("Professor: %s \n", vetorDisciplinas[posvetor].disciplina); 	
+			
+			
+			printf("--- ATUALIZAÇÃO DE DADOS DA DISCIPLINA ---");
+			printf("Nome da Disciplina (até 50 caracteres): \n");
+				fflush(stdin);
+				fgets(vetorDisciplinas[posvetor].nome, 51, stdin);
+				
+				size_t ln = strlen(vetorDisciplinas[posvetor].nome) - 1; //comando para retirar o \n gerado pelo fgets
+	        	if (vetorDisciplinas[posvetor].nome[ln] == '\n')
+	        	{
+	        		vetorDisciplinas[posvetor].nome[ln] = '\0';	
+				}
+				
+				printf("Código da Disciplina (até 9 caracteres): \n");
+				fflush(stdin);
+				fgets(vetorDisciplinas[posvetor].codigo, 9, stdin);
+				
+				ln = strlen(vetorDisciplinas[posvetor].codigo) - 1; //comando para retirar o \n gerado pelo fgets
+	        	if (vetorDisciplinas[posvetor].codigo[ln] == '\n')
+	        	{
+	        		vetorDisciplinas[posvetor].codigo[ln] = '\0';	
+				}
+				printf("Semestre: aaaa/s \n");
+				fflush(stdin);
+				fgets(vetorDisciplinas[posvetor].semestre, 7, stdin);
+				
+				ln = strlen(vetorDisciplinas[posvetor].semestre) - 1; //comando para retirar o \n gerado pelo fgets
+	        	if (vetorDisciplinas[posvetor].semestre[ln] == '\n')
+	        	{
+	        		vetorDisciplinas[posvetor].semestre[ln] = '\0';	
+				}
+				printf("Professor da Disciplina (até 50 caracteres): \n");
+				fflush(stdin);
+				fgets(vetorDisciplinas[posvetor].professor, 51, stdin);
+				
+				ln = strlen(vetorAlunos[posvetor].professor) - 1; //comando para retirar o \n gerado pelo fgets
+	        	if (vetorAlunos[posvetor].professor[ln] == '\n')
+	        	{
+	        		vetorAlunos[posvetor].professor[ln] = '\0';	
+				}	 
+		}
+		if(opcao == 4) //codigo é uma char. Tenho que comparar 2 strings. Usar strcomp
+		{
+			printf("Informe o código da Disciplina que deseja EXCLUIR. \n");
+			scanf("%d", &codigo);
+			
+			for(icont = 0; icont<qtdealunos; icont++)
+			{
+				if(vetorDisciplinas[icont].codigo == codigo)
+				{
+					posvetor = icont;
+				}
+			}
+			
+			printf("--- DISCIPLINA A SER EXCLUÍDA --- \n");
+			printf("Nome: %s \n", vetorDisciplinas[posvetor].nome);
+			printf("Código: %s \n", vetorDisciplinas[posvetor].codigo);
+			printf("Semestre: %s \n", vetorDisciplinas[posvetor].semestre);
+			printf("Professor: %s \n", vetorDisciplinas[posvetor].disciplina); 	
+			
+			printf("Excluindo dados... \n");
+			
+			/*for(icont = posvetor; icont<qtdealunos; icont++) //Laço sobrepondo os dados posteriores ao da posição solicitada pelo usuário. Pendente exclusão do último dado do vetor que fica duplicado.
+			{												//Analisar uma maneira mais fácil de realizar esta exclusão.
+				vetorAlunos[posvetor].matricula = vetorAlunos[posvetor+1].matricula;
+				vetorAlunos[posvetor].nome = vetorAlunos[posvetor+1].nome;
+				vetorAlunos[posvetor].dataNascimento.dia = vetorAlunos[posvetor+1].dataNascimento.dia;
+				vetorAlunos[posvetor].dataNascimento.mes = vetorAlunos[posvetor+1].dataNascimento.mes;
+				vetorAlunos[posvetor].dataNascimento.ano = vetorAlunos[posvetor+1].dataNascimento.ano;
+				vetorAlunos[posvetor].CPF = vetorAlunos[posvetor+1].CPF;			
+			}*/
+			printf("Disciplina Exclúida. \n");		
+		}
+		if(opcao == 5)
+		{
+			printf("Informe o código da Disciplina. \n"); 
+			fflush(stdin);
+			fgets(codigodisciplina, 9, stdin);
+			//verificar se a máteria existe na struct acima. se for válida, construir matriz de disciplinas e alunos matriculados.
+			
+			for(kcont = 0; icont < 1;icont++)
+			{
+				do
+			}
+			
+			
+			
+			
+			printf("Informe o nome do Aluno. \n");
+			fflush(stdin);
+			fgets(nomealuno, 9, stdin);
+			
+			
+			
+		}
+		if(opcao == 6)
+		{
+			
+		}
+		if(opcao > 6)
+		{
+			printf("Opção inválida. \n");
+		}    
+    }
+	return 0;	
+}
+
+
