@@ -20,7 +20,7 @@ typedef struct
 
 int main()
 {
-	int opcao, icont, jcont, kcont, lista = 0, finalizar = 0, matricula, posvetor = -1, nprofessor, validamatricula = 0, validacpf = 0, validadatadenascimento = 0, validasexo = 0, somacpf = 0, contprofessor=0;
+	int opcao, icont, jcont, kcont, lista = 0, finalizar = 0, matricula, posvetor = -1, nprofessor, validamatricula = 0, validacpf = 0, validadatadenascimento = 0, validasexo = 0, soma = 0, contprofessor=0;
 	incluir vetorProfessores[qtdeprofessores]; //inicialmente definido em 2.
 	     
     while(finalizar == 0)
@@ -276,11 +276,101 @@ int main()
        	      {
       		     	vetorProfessores[posvetor].nome[ln] = '\0';	
           		}
-          					
-          		printf("Sexo: (M)Masculino/(F)Feminino \n");
-          		scanf("%c", &vetorProfessores[posvetor].sexo);
-        		          
-    		      printf("Dia do Nascimento: (aa) \n");
+
+              validasexo = 0;  
+              while(validasexo == 0)
+        			{
+        				printf("Sexo: (M)Masculino/(F)Feminino \n");
+        				scanf("%c", &vetorProfessores[posvetor].sexo);
+        				getchar();
+        				
+        				if((vetorProfessores[posvetor].sexo == 'M') || (vetorProfessores[posvetor].sexo == 'F'))
+        				{
+        					validasexo = 1;								
+        				}				
+        				else
+        				{						
+        					validasexo = 0;	
+        					printf("Sexo Inválido. Digite M para Masculino, F para Feminino. \n");
+        					printf("Informe novamente o ");
+        				}	
+        			}
+
+              /*printf("Sexo: (M)Masculino/(F)Feminino \n");
+          		scanf("%c", &vetorProfessores[posvetor].sexo);*/
+
+              validadatadenascimento = 0;
+              while(validadatadenascimento == 0)
+    			    {
+        				printf("Dia do Nascimento: (dd) \n");
+        				scanf("%d", &vetorProfessores[posvetor].dataNascimento.dia);
+        				printf("Mês do Nascimento: (mm) \n");
+        				scanf("%d", &vetorProfessores[posvetor].dataNascimento.mes);
+        				printf("Ano do Nascimento: (aaaa) \n");
+        				scanf("%d", &vetorProfessores[posvetor].dataNascimento.ano);
+        				getchar();
+        				
+        				// SUGESTÃO DE MELHORIA: ANÁLISE DE ANO POR BISSEXTO. **SOMENTE DEPOIS QUE ESTIVERMOS VALIDADO O BÁSICO.
+        				if((vetorProfessores[posvetor].dataNascimento.ano > 2021) || (vetorProfessores[posvetor].dataNascimento.ano <= 1930))
+        				{	
+        					printf("Ano de nascimento inválido. O ano de nascimento deve ser entre 1930 e 2021. \n");
+        					printf("Informe novamente os dados abaixo. \n");
+        				}
+        				else
+        				{
+        					if((vetorProfessores[posvetor].dataNascimento.mes <= 12) || (vetorProfessores[posvetor].dataNascimento.ano > 0))
+        					{
+        						if((vetorProfessores[posvetor].dataNascimento.mes == 1) || (vetorProfessores[posvetor].dataNascimento.mes == 3) || (vetorProfessores[posvetor].dataNascimento.mes == 5) || (vetorProfessores[posvetor].dataNascimento.mes == 7) || (vetorProfessores[posvetor].dataNascimento.mes == 8) || (vetorProfessores[posvetor].dataNascimento.mes == 10) || (vetorProfessores[posvetor].dataNascimento.mes == 12))
+        						{
+        							if((vetorProfessores[posvetor].dataNascimento.dia <= 0 || vetorProfessores[posvetor].dataNascimento.dia > 31))
+        							{
+        								printf("Data de nascimento inválida. O dia de nascimento no mês informado deve ser um número entre 1 e 31 \n");
+        								printf("Informe novamente os dados abaixo. \n");
+        							}
+        							else
+        							{
+        								validadatadenascimento = 1;
+        							}
+        						}
+        						else
+        						{
+        							if(vetorProfessores[posvetor].dataNascimento.mes == 2)
+        							{
+        								if((vetorProfessores[posvetor].dataNascimento.dia <= 0 || vetorProfessores[posvetor].dataNascimento.dia >= 29))
+        								{
+        								printf("Data de nascimento inválida. O dia de nascimento no mês informado deve ser um número entre 1 e 28 para anos não bissextos e 29 para anos bissextos \n");
+        								printf("Informe novamente os dados abaixo. \n");
+        								}
+        								else
+        								{
+        								validadatadenascimento = 1;
+        								}
+        							}
+        							else
+        							{
+        								if((vetorProfessores[posvetor].dataNascimento.dia <= 0 || vetorProfessores[posvetor].dataNascimento.dia >= 30))
+        								{
+        									printf("Data de nascimento inválida. O dia de nascimento no mês informado deve ser um número entre 1 e 30 \n");
+        									printf("Informe novamente os dados abaixo. \n");
+        								}
+        								else
+        								{
+        									validadatadenascimento = 1;
+        								}	
+        							}	
+        						}
+        					}
+        					else
+        					{	
+        						printf("Data de nascimento inválida. O mês de nascimento deve ser informado um número entre 1 e 12 \n");
+        						printf("Informe novamente os dados abaixo. \n");	
+        					}
+        				}	
+        			}
+
+              
+              
+    		      /*printf("Dia do Nascimento: (aa) \n");
           		scanf("%d", &vetorProfessores[posvetor].dataNascimento.dia);
           		getchar();
         			printf("Mês do Nascimento: (mm) \n");
@@ -288,9 +378,34 @@ int main()
         			getchar();
         			printf("Ano do Nascimento: (aaaa)\n");
          			scanf("%d", &vetorProfessores[posvetor].dataNascimento.ano);
-          		getchar();
-          			
-          		printf("CPF: (Somente Números) \n");
+          		getchar();*/
+
+              validacpf = 0;
+              while(validacpf == 0)
+        			{
+        				printf("CPF: (Somente números) \n");
+        				fflush(stdin);
+        				fgets(vetorProfessores[posvetor].CPF, 15, stdin);
+        					
+        				ln = strlen(vetorProfessores[posvetor].CPF) - 1; //comando para retirar o \n gerado pelo fgets
+        		    if (vetorProfessores[posvetor].CPF[ln] == '\n')
+        				{
+        		      vetorProfessores[posvetor].CPF[ln] = '\0';	
+        				}			
+                
+                soma = strlen(vetorProfessores[posvetor].CPF);
+                
+                if(soma < 11)
+                {
+                  printf("CPF com tamanho inválido. Deve ter 11 caracteres. \n");
+          			  printf("Por favor, informe o ");
+                }
+                else
+                {
+                  validacpf = 1;
+                }
+              }
+              /*printf("CPF: (Somente Números) \n");
           		fflush(stdin);
           		fgets(vetorProfessores[posvetor].CPF, 15, stdin);
           			
@@ -298,7 +413,7 @@ int main()
               if (vetorProfessores[posvetor].CPF[ln] == '\n')
               {
     		      	vetorProfessores[posvetor].CPF[ln] = '\0';	
-        			}    
+        			} */   
       			}            
           }    			
 			  }			   
@@ -350,7 +465,7 @@ int main()
           		printf("Excluindo dados... \n");
           									
         			vetorProfessores[posvetor].matricula = 0;		
-      				strcpy(vetorProfessores[posvetor].nome, "Aluno excluído.");
+      				strcpy(vetorProfessores[posvetor].nome, "Professor excluído.");
           		vetorProfessores[posvetor].sexo = '0';
           		vetorProfessores[posvetor].dataNascimento.dia = 0;
         			vetorProfessores[posvetor].dataNascimento.mes = 0;

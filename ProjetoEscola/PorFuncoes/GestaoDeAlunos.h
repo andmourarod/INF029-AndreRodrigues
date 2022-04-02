@@ -1,0 +1,1 @@
+int mainAluno(); //DESCRIÇÃO DA FUNÇÃO

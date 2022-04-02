@@ -1,0 +1,1 @@
+int menuGeral(); //DESCRIÇÃO DA FUNÇÃO
