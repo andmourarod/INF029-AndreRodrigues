@@ -1,4 +1,4 @@
-/ #################################################
+
 //  Instituto Federal da Bahia
 //  Salvador - BA
 //  Curso de Análise e Desenvolvimento de Sistemas http://ads.ifba.edu.br
@@ -11,10 +11,10 @@
 //  O aluno deve preencher seus dados abaixo, e implementar as questões do trabalho
 
 //  ----- Dados do Aluno -----
-//  Nome:
-//  email:
-//  Matrícula:
-//  Semestre:
+//  Nome: André Moura Rodrigues
+//  email: andmourarodrigues@gmail.com  
+//  Matrícula: 20212160019  
+//  Semestre: 2022/1.
 
 //  Copyright © 2016 Renato Novais. All rights reserved.
 // Última atualização: 07/05/2021
@@ -22,6 +22,9 @@
 // #################################################
 #ifndef TRABALHO1_PRIMEIROULTIMONOMEMATRICULA_H
 #define TRABALHO1_PRIMEIROULTIMONOMEMATRICULA_H
+
+#include <stdlib.h>
+#include <string.h>
 
 typedef struct DQ
 {
@@ -41,6 +44,7 @@ typedef struct Qtd
 
 } DiasMesesAnos;
 
+
 int somar(int x, int y); //função utilizada para testes
 int fatorial(int x); //função utilizada para testes
 int q1(char data[]);
@@ -51,4 +55,4 @@ int q5(int num);
 int q6(int numerobase, int numerobusca);
 DataQuebrada quebraData(char data[]);
 
-#endif  // TRABALHO1_PRIMEIROULTIMONOMEMATRICULA_H
+#endif //TRABALHO1_PRIMEIROULTIMONOMEMATRICULA_H
