@@ -61,6 +61,11 @@ DataQuebrada quebraData(char data[])
   {
     caracterestranho = 1;
   }
+
+  if(data[i+1] == '/')
+  {
+    caracterestranho = 1;  
+  }
   
   int j = i + 1; //anda 1 cada para pular a barra
 	i = 0;
@@ -328,12 +333,12 @@ int q3(char *texto, char c, int isCaseSensitive)
   if((c >= 'A') && (c<= 'Z'))
   {
     cMaiusculo = c;
-    cMinusculo = c + 26;    
+    cMinusculo = c + 32;    
   }
 
   if((c >= 'a') && (c<= 'z'))  
   {
-    cMaiusculo = c - 26;
+    cMaiusculo = c - 32;
     cMinusculo = c;     
   }
 
@@ -351,9 +356,11 @@ int q3(char *texto, char c, int isCaseSensitive)
   {
     for(icont = 0; texto[icont] != '\0'; icont++)
     {
-      if((texto[icont] == cMinusculo) || (texto[icont] == cMaiusculo))
+      if(texto[icont] == cMinusculo || texto[icont] == cMaiusculo)
       {
-      contador++;        
+      
+      contador++; 
+      
       }    
     }
   }   
@@ -375,18 +382,12 @@ int q4(char *strTexto, char *strBusca, int posicoes[30])
   {
     vetorAuxiliarBusca[icont] = 0;
   }
-
-  /*for(icont = 0; icont < 250; icont++)
-  {
-    printf("%d ", vetorAuxiliar[icont]);
-  }*/
   
   for(icont = 0, jcont = 0; strTexto[icont] != '\0'; icont++)
   {    
     if(strTexto[icont] != -61)
     {
-      vetorAuxiliarTexto[jcont] = strTexto[icont];
-      //printf(" strTexto[icont] %d icont %d vetorAuxiliar[jcont] %d jcont %d \n", strTexto[icont], icont, vetorAuxiliarTexto[jcont], jcont);
+      vetorAuxiliarTexto[jcont] = strTexto[icont];      
       jcont = jcont + 1;
     }
   }
@@ -395,14 +396,10 @@ int q4(char *strTexto, char *strBusca, int posicoes[30])
   {    
     if(strBusca[icont] != -61)
     {
-      vetorAuxiliarBusca[jcont] = strBusca[icont];
-      //printf(" strBusca[icont] %d icont %d vetorAuxiliarBusca[jcont] %d jcont %d \n", strBusca[icont], icont, vetorAuxiliarBusca[jcont], jcont);
+      vetorAuxiliarBusca[jcont] = strBusca[icont];      
       jcont = jcont + 1;
     }
-  }
-
-  //printf("strlen(vetorAuxiliarBusca) %ld \n", strlen(vetorAuxiliarBusca));
-  //printf("strlen(strBusca) %ld \n", strlen(strBusca));
+  }  
   
   for(icont = 0; vetorAuxiliarTexto[icont] != '\0'; icont++)   
   {
@@ -417,17 +414,16 @@ int q4(char *strTexto, char *strBusca, int posicoes[30])
     
     if(jcont == strlen(vetorAuxiliarBusca))
     {     
-      //printf("strlen(vetorAuxiliarBusca) %ld \n", strlen(vetorAuxiliarBusca));
-      //printf("strlen(strBusca) %ld \n", strlen(strBusca));      
       contador = contador + 1;
       posicoes[kcont] = icont - strlen(vetorAuxiliarBusca) + 1 + 1; 
-      //printf("posicao inicial %d ", posicoes[kcont]);      
+      //printf("posicao inicial %d ", posicoes[kcont]);    
       kcont++;
       posicoes[kcont] = icont + 1; 
       //printf("posicao final %d ", posicoes[kcont]);
       kcont++;  
+      jcont = 0;
     }    
-  }  
+  }    
   
   return contador;
 }
