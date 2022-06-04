@@ -37,7 +37,9 @@ int main(){
     //prdintf("q5\n");
     testQ5(); // 10 testes
     //prdintf("q6\n");
-    testQ6(); // 10 testes     
+    testQ6(); // 10 testes 
+    
+    
 }
 
 void testQ1(){
@@ -62,7 +64,6 @@ void testQ1(){
     printf("%d\n",q1(str) == 0);
     strcpy(str,"1/12/19");
     printf("%d\n",q1(str) == 1); 
-    
 
 }
 
@@ -195,7 +196,7 @@ void testQ2(){
     printf("%d\n",dma.qtdDias == 1);
     printf("%d\n",dma.qtdMeses == 1);
     printf("%d\n",dma.qtdAnos == 0);
-        
+
 }
 
 void testQ3(){
@@ -206,7 +207,7 @@ void testQ3(){
     printf("%d\n",q3(str, 'l', 1) == 0);
     printf("%d\n",q3(str, 'l', 0) == 1);
     printf("%d\n",q3(str, 'L', 0) == 1);
-    
+
     strcpy(str,"Letícia, signifiCa fEliCIdADE");
     printf("%d\n",q3(str, 'c', 0) == 3);
     printf("%d\n",q3(str, 'C', 0) == 3);
@@ -215,7 +216,9 @@ void testQ3(){
     printf("%d\n",q3(str, 'R', 0) == 0);
     printf("%d\n",q3(str, 'e', 0) == 3);
     printf("%d\n",q3(str, 'E', 1) == 2);
-    printf("%d\n",q3(str, 'S', 1) == 0);    
+    printf("%d\n",q3(str, 'S', 1) == 0);
+
+    
 }
 
 void testQ4(){
@@ -247,36 +250,17 @@ void testQ4(){
     printf("%d\n",posicoes[3]==36);
     printf("%d\n",posicoes[4]==52);
     printf("%d\n",posicoes[5]==54);
-    
-    for (i = 0; i < 30; i++)
-    {
-        posicoes[i] = -1;
-    }
-    strcpy(strTexto, "Olá, o mundo é muito grande. Tem muitas pessoas, e muitos problemas");
-    strcpy(strBusca, "mui");
-    printf("%d\n", q4(strTexto, strBusca, posicoes) == 3);
-    printf("%d\n", posicoes[0] == 16);
-    printf("%d\n", posicoes[1] == 18);
-    printf("%d\n", posicoes[2] == 34);
-    printf("%d\n", posicoes[3] == 36);
-    printf("%d\n", posicoes[4] == 52);
-    printf("%d\n", posicoes[5] == 54);
 
-    
     for (i = 0; i<30; i++){
         posicoes[i] = -1;
     }
     strcpy(strTexto,"Programar é legal?");
     strcpy(strBusca,"sim");
     printf("%d\n",q4(strTexto, strBusca, posicoes) == 0);
-    
 
-    
     for (i = 0; i<30; i++){
         posicoes[i] = -1;
-    }    
-    
-  
+    }
     strcpy(strTexto,"maraaaavilha, meu prograaaama funcionou");
     strcpy(strBusca,"aa");
     printf("%d\n",q4(strTexto, strBusca, posicoes) == 4);
@@ -287,7 +271,7 @@ void testQ4(){
     printf("%d\n",posicoes[4]==24);
     printf("%d\n",posicoes[5]==25);
     printf("%d\n",posicoes[6]==26);
-    printf("%d\n",posicoes[7]==27);   
+    printf("%d\n",posicoes[7]==27);
 
 }
 
@@ -316,5 +300,6 @@ void testQ6(){
     printf("%d\n",q6(1234, 13) == 0);
     printf("%d\n",q6(544444, 4) == 5);
     printf("%d\n",q6(1234562354, 32) == 0);
- 
+
 }
+    
